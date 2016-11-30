@@ -1,4 +1,9 @@
 # FlightSight
+##工程层次结构
+FlightSight--src（后台代码部分）
+           --docs（文档部分）
+           --resource（引用资源部分）
+           --view（前台部分）
 ##前期准备阶段
 ###技术深入以及学习
 
