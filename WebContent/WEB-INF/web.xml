@@ -12,6 +12,9 @@
    <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+     <listener>
+        <listener-class>com.flight.core.init.InitEnv</listener-class>
+    </listener>
  
 
  
@@ -28,6 +31,6 @@
  
     <servlet-mapping>
         <servlet-name>FlightSight</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/main</url-pattern>
     </servlet-mapping>
 </web-app>
