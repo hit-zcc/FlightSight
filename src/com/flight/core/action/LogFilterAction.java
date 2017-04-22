@@ -8,10 +8,13 @@ import java.util.Set;
 import org.springframework.stereotype.Component;
 
 import com.flight.util.StringUtil;
-
+@Component
 public class LogFilterAction {
 	ArrayList<FildeEntity> entityList=new ArrayList<FildeEntity>();
 	private FilterType ft;
+	LogFilterAction(){
+		
+	}
 	public LogFilterAction(Map<String,String> map,FilterType ty){
 		switch(ty){
 		case Grok:ft=FilterType.Grok;break;

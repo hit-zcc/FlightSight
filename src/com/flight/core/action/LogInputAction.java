@@ -3,12 +3,15 @@ package com.flight.core.action;
 import org.springframework.stereotype.Component;
 
 import com.flight.util.StringUtil;
-
+@Component
 public class LogInputAction {
 	private InputType Input=null;
 	private String path;
 	private String fileds;
 	private String tags;
+	LogInputAction(){
+		
+	}
 	public static enum  InputType{
 		File("file");
 		private String input;

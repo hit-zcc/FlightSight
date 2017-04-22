@@ -3,12 +3,14 @@ package com.flight.core.action;
 import org.springframework.stereotype.Component;
 
 import com.flight.util.StringUtil;
-
+@Component
 public class LogOutputAction {
 	private OutputType output=null;
 	private String hosts;
 	private String index;
-
+	LogOutputAction(){
+		
+	}
 	public static enum  OutputType{
 		elasticsearch("elasticsearch");
 		private String output;
