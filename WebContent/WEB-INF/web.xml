@@ -3,11 +3,6 @@
   <display-name>SpringMvc</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
    <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -31,6 +26,6 @@
  
     <servlet-mapping>
         <servlet-name>FlightSight</servlet-name>
-        <url-pattern>/main</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 </web-app>

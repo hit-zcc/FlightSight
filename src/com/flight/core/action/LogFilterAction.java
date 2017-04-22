@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import org.springframework.stereotype.Component;
+
 import com.flight.util.StringUtil;
 
 public class LogFilterAction {

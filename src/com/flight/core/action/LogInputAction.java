@@ -1,5 +1,7 @@
 package com.flight.core.action;
 
+import org.springframework.stereotype.Component;
+
 import com.flight.util.StringUtil;
 
 public class LogInputAction {

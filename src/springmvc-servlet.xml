@@ -20,16 +20,36 @@ http://www.springframework.org/schema/context
  
  
 http://www.springframework.org/schema/context/spring-context-4.2.xsd">
- 
-    <context:annotation-config />    
+	<mvc:annotation-driven/>
     <context:component-scan base-package="com.flight.core.gather.config"/>
+    <context:component-scan base-package="com.flight.core.action"/>
     <context:component-scan base-package="com.flight.core.gather.service"/>
- 
+ 	<mvc:resources location="/" mapping="/**/*.html"/> 
+ 	<mvc:resources location="/" mapping="/**/*.js"/>  
+	<mvc:resources location="/" mapping="/**/*.css"/>  
+	<mvc:resources location="/" mapping="/**/*.png"/>  
+	<mvc:resources location="/" mapping="/**/*.gif"/>
+	<mvc:resources mapping="/assets/**" location="/assets/"/>
     <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
         <!-- WebRoot到一指定文件夹文件路径 --> 
         <property name="prefix" value="/" />  
         <!-- 视图名称后缀  --> 
-        <property name="suffix" value=".jsp" />  
+        <property name="suffix" value=".html" />  
     </bean>  
+<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
+    <property name="messageConverters">  
+        <list>  
+            <ref bean="jsonHttpMessageConverter" />  
+        </list>  
+    </property>  
+</bean>  
+  
+<bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">  
+    <property name="supportedMediaTypes">  
+        <list>  
+            <value>application/json;charset=UTF-8</value>  
+        </list>  
+    </property>  
+</bean>  
 </beans>
