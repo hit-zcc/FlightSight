@@ -15,7 +15,9 @@ function logsubmit() {
         dataType: "json",
         contentType:"application/json;charset=utf-8",
         success: function (msg) {
-                alert(msg)
+
+               $('#logContent')[0].innerHTML=msg;
+               $('#inputlog').show();
         },
         error:function(ajaxobj)
         {
@@ -24,10 +26,66 @@ function logsubmit() {
         }
     });
 }
+function  logContent(){
+    $('#splitheader').show();
+    body=$('#splitbody');
+    body.show();
+    tbody=$('#tbody');
+    tbody.children().remove()
+     splite_input=$('#split-input').val()
+     content= $('#logContent')[0].innerHTML;
+     var arr =content.split(splite_input);
+     $.each(arr,function(index,value){
+        console.log(value);
+         aid='tr'+index
+         tid='type'+index
+         tbody.append('<tr><td>'+index+'</td><td>'+value+'</td><td><a href="#" id='+aid+'>不分析</a></td><td><a href="#" id='+tid+'>String</a></td></tr>')
+
+         requirejs(['log','jQuery','fileinput',"bootstrap-editable"], function(log,jq,file,edit) {
+             $(function () {
+                 $('#tr'+index).editable(
+                 {
+                     type: "text",                //编辑框的类型。支持text|textarea|select|date|checklist等
+                     disabled: false,             //是否禁用编辑
+                     emptytext: "空文本",          //空值的默认文本
+                     mode: "inline",              //编辑框的模式：支持popup和inline两种模式，默认是popup
+                     validate: function (value) { //字段验证
+                         if (!$.trim(value)) {
+                             return '不能为空';
+                         }
+                     }
+                 }
+             )
+             })
+
+         });
+
+
+         requirejs(['log','jQuery','fileinput',"bootstrap-editable"], function(log,jq,file,edit) {
+             $(function () {
+                 $('#type'+index).editable(
+                     {
+                         type: "select",                //编辑框的类型。支持text|textarea|select|date|checklist等
+                         source: [{ value: 1, text: "String" }, { value: 2, text: "Int" }, {value:3,text:"Float"}],
+                         disabled: false,             //是否禁用编辑
+                         emptytext: "空文本",          //空值的默认文本
+                         mode: "inline",              //编辑框的模式：支持popup和inline两种模式，默认是popup
+                         validate: function (value) { //字段验证
+                             if (!$.trim(value)) {
+                                 return '不能为空';
+                             }
+                         }
+                     }
+                 )
+             })
+
+         });
+
+    })
+
+}
+
 define([], function() {
-    function dd() {
-        alert("hello, sdsd~");
-    }
     function logsubmit(dir) {
         alert(dir);
     }

@@ -10,13 +10,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LogFileManager {
-	private String dir;
+	private String dir="";
+	public String getDir() {
+		return dir;
+	}
+
 	FileReader fileReader=null;
 	LogFileManager(){
 		
 	}
 	public void setFileDir(String dir){
-		this.dir=dir;
+		this.dir=dir.replaceAll("\\\\", "/");
+		System.out.println(this.dir);
 	}
 	public List<String> getLogFileLine(int lineNum){
 		List<String> result=new ArrayList<String>();
@@ -34,9 +39,17 @@ public class LogFileManager {
 			lineNum--;
 		   }
 		}catch(Exception e){
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return result;
+		
+	}
+	public static void main(String[] args){
+		LogFileManager l=new LogFileManager();
+		System.out.print("C:\\fakepath\\3.txt".replaceAll("\\\\", "/"));
+//		l.setFileDir("C:\fakepath\3.txt");
+        System.out.print(l.getDir());
+//		System.out.print(l.getLogFileLine(1).get(0));
 		
 	}
 }

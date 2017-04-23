@@ -6,12 +6,13 @@ require.config({
     paths : {
         "jQuery" : "jquery",
         "log" : "log",
-        "fileinput" : "fileinput"
+        "fileinput" : "fileinput",
+        "editable" : "bootstrap-editable"
     }
 })
 
 
-requirejs(['log','jQuery','fileinput'], function(log,jq,file) {
+requirejs(['log','jQuery','fileinput',"bootstrap-editable"], function(log,jq,file,edit) {
     log.initFileInput("input-1","G:\\Data\\");
 /*    var dir=$("#submit-1")
     dir.click(function(){

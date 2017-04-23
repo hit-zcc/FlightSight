@@ -14,14 +14,13 @@
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/fileinput.css" rel="stylesheet" />
-
     <!-- Animation library for notifications   -->
     <link href="assets/css/animate.min.css" rel="stylesheet"/>
 
     <!--  Light Bootstrap Table core CSS    -->
     <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
 
-
+    <link href="assets/css/bootstrap-editable.css" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="assets/css/demo.css" rel="stylesheet" />
 
@@ -179,6 +178,51 @@
                                 <button id="bt1" type="submit" class="btn btn-default" data-toggle="modal" data-target="#myModal">Add Log File</button>
                             </div>
                             <div class="content">
+                                <div class="row" >
+                                    <div class="list-group">
+                                        <a class="list-group-item active">
+                                            <h4 class="list-group-item-heading">
+                                                Log 内容预览设置
+                                            </h4>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <p class="list-group-item-text" id="logContent">
+                                                空
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="row" >
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Splite Symbol</label>
+                                            <input type="text" class="form-control" placeholder="Split Symbol" id="split-input" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" >
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-info btn-fill pull-left" onclick="logContent()">Update Profile</button>
+                                </div>
+                                </div>
+                                <hr>
+                                <div class="header"  style="display:none" id="splitheader">
+                                    <h4 class="title">Split Line With Symbol</h4>
+                                    <p class="category">Edit Value And Value</p>
+                                </div>
+                                <div class="content table-responsive table-full-width" style="display:none" id="splitbody">
+                                    <table class="table table-hover table-striped" id="bodytable">
+                                        <thead>
+                                        <th>ID</th>
+                                        <th>Value</th>
+                                        <th>Name</th>
+                                        <th>Type</th>
+                                        </thead>
+                                        <tbody id="tbody">
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <form>
                                     <div class="row">
                                         <div class="col-md-5">
@@ -317,7 +361,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" id="submit-1" class="btn btn-primary" onclick="logsubmit()">提交更改</button>
+                <button type="button" id="submit-1" class="btn btn-primary" onclick="logsubmit()" data-dismiss="modal">提交</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -344,6 +388,9 @@
 
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
+
+
+
 <script data-main="scripts/main.js" src="assets/js/require.js"></script>
 
 
