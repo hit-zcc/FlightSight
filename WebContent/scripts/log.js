@@ -4,10 +4,8 @@
 
 function logsubmit() {
     var obj = {}
-    alert($('#input-1').val());
     var dir=$('#input-1').val();
     obj['name'] = dir;
-    alert(JSON.stringify(obj));
     $.ajax({
         url: "http://localhost:8080/FlightSight/log/test",
         type : "POST",
@@ -61,6 +59,7 @@ function  logContent(){
          });
 
 
+
          requirejs(['log','jQuery','fileinput',"bootstrap-editable"], function(log,jq,file,edit) {
              $(function () {
                  $('#type'+index).editable(
@@ -84,7 +83,42 @@ function  logContent(){
     })
 
 }
+function  FormSubmit(){
+    var submitBody = {}
+    var table={}
+    var trList = $('#tbody').children("tr")
+    trList.each(function(index,value) {
+        id=trList.eq(index).find("td")[0].innerText
+        val=trList.eq(index).find("td")[1].innerText
+        name=trList.eq(index).find("td")[2].innerText
+        type=trList.eq(index).find("td")[3].innerText
+        table[id]=id+','+val+','+name+','+type
+    })
+    submitBody['Dir']=$('#input-1').val();
+    submitBody['table']=JSON.stringify(table)
+    submitBody['Index']=$('#Index').val()
+    submitBody['Tags']=$('#Tags').val()
+    submitBody['Add']=$('#Add').val()
+    submitBody['Start']=$('#Start').val()
+    submitBody['Split']=$('#split-input').val()
+    $.ajax({
+        url: "http://localhost:8080/FlightSight/log/FormSubmit",
+        type : "POST",
+        data : JSON.stringify(submitBody),
+        dataType: "json",
+        contentType:"application/json;charset=utf-8",
+        success: function (msg) {
+        alert(msg)
 
+        },
+        error:function(ajaxobj)
+        {
+            if(ajaxobj.responseText!='')
+                alert(ajaxobj.responseText);
+        }
+    });
+
+}
 define([], function() {
     function logsubmit(dir) {
         alert(dir);
@@ -95,7 +129,6 @@ define([], function() {
         },
         initFileInput:function (ctrlName,uploadUrl) {
             var control = $('#' + ctrlName);
-            alert("hello, app~");
             control.fileinput({
                 language: 'zh', //设置语言
                 uploadUrl:uploadUrl,

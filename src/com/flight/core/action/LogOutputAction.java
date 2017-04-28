@@ -6,6 +6,9 @@ import com.flight.util.StringUtil;
 @Component
 public class LogOutputAction {
 	private OutputType output=null;
+	public void setOutput(OutputType output) {
+		this.output = output;
+	}
 	private String hosts;
 	private String index;
 	LogOutputAction(){
@@ -40,13 +43,12 @@ public class LogOutputAction {
 		
 	}
 	public String index(String index){
-		String begin=" index => {";
-		String after="}";
-		this.index=begin.concat("\""+index+"\"").concat(after);
+		String begin=" index => ";
+		this.index=begin.concat("\""+index+"\"");
 		return this.index;
 	}
 
-	public String getInputContent(){
+	public String getOutContent(){
 		String begin="output"+" {"+output.getType()+" {";
 		return begin.concat(this.getHosts()).concat(this.getIndex()).concat("}}");
 	}
@@ -55,7 +57,7 @@ public class LogOutputAction {
 		LogOutputAction i=new LogOutputAction(OutputType.elasticsearch);
        i.hosts("loclhost:8080");
        i.index("c");
-		System.out.print(i.getInputContent());
+		System.out.print(i.getOutContent());
 		
 	}
 	public OutputType getOutput() {

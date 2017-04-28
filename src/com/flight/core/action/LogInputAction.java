@@ -84,8 +84,12 @@ public class LogInputAction {
 	}
 	public String getPath() {
 		return path;
-	}
+	}	
+
 	public String getFileds() {
+		if(fileds==null||fileds==""){
+			return "";
+		}
 		return fileds;
 	}
 	public String getTags() {

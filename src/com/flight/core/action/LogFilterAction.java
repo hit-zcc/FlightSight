@@ -7,27 +7,33 @@ import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
+import com.alibaba.fastjson.JSONObject;
 import com.flight.util.StringUtil;
 @Component
 public class LogFilterAction {
 	ArrayList<FildeEntity> entityList=new ArrayList<FildeEntity>();
 	private FilterType ft;
+
+
+	public void setFt(FilterType ft) {
+		this.ft = ft;
+	}
 	LogFilterAction(){
 		
 	}
-	public LogFilterAction(Map<String,String> map,FilterType ty){
+	public LogFilterAction(Map<FiedName,String> map,FilterType ty){
 		switch(ty){
 		case Grok:ft=FilterType.Grok;break;
 		default :ft=FilterType.Grok;break;
 	}
-		 for(String key:map.keySet()){
+		 for(FiedName key:map.keySet()){
 			 entityList.add(new FildeEntity(key,FiedType.getFiledTypeByString(map.get(key))));
 		 }
 		
 	}
 
 	public static enum  FilterType{
-		Grok("Grok");
+		Grok("grok");
 		private String filter;
 		FilterType(String filter){
 			this.filter=filter;
@@ -36,15 +42,31 @@ public class LogFilterAction {
 			return filter;
 		}
 	}
+	public static enum  FiedName{
+		EMPTY(""),FILEDNAME();
+		private String filedname;
+		FiedName(String filedname){
+			this.filedname=filedname;
+		}
+		FiedName(){
+		}
+		public String getName(){
+			return filedname;
+		}
+		public void setName(String filedname){
+			this.filedname=filedname;
+		}
+		
+	}
 	public static enum  FiedType{
-	    STRING(""),INT("int"),FLOAT("float");
+	    STRING(""),INT("Int"),FLOAT("Float");
 		private String filedtype;
 		FiedType(String filedtype){
 			this.filedtype=filedtype;
 		}
 		public String getType(){
 			return filedtype;
-		}
+		}		
 		public static FiedType getFiledTypeByString(String s){
 			FiedType t;
 			switch(s){
@@ -59,8 +81,8 @@ public class LogFilterAction {
 		String en="%{DATA##}";
 		private String name;
 		private FiedType type;
-		FildeEntity(String name,FiedType type){
-			this.name=name;
+		FildeEntity(FiedName name,FiedType type){
+			this.name=name.getName();
 			this.type=type;
 		}
 		public String getFiledEntityString(){
@@ -96,7 +118,23 @@ public class LogFilterAction {
 	public static void main(String[] args){
 		Map<String,String> map =new HashMap<String,String>();
 		map.put("zcc", "");
-		LogFilterAction l=new LogFilterAction(map,FilterType.Grok);
-		System.out.print(l.getFilterContent());
+//		LogFilterAction l=new LogFilterAction(map,FilterType.Grok);
+//		System.out.print(l.getFilterContent());
 	}
+	public void parseJsonToMap(JSONObject parseObject) {
+		FiedName fn;
+		for(int i=0;i<parseObject.keySet().size();i++){
+			String contoent[] = parseObject.getString(i+"").split(",");
+			if(contoent[2].equals("不分析")){
+				fn=FiedName.EMPTY;
+			}
+			else{
+				fn=FiedName.FILEDNAME;
+				fn.setName(contoent[2]);
+			}
+			entityList.add(new FildeEntity(fn,FiedType.getFiledTypeByString(contoent[3])));
+
+		}
+	}
+
 }
