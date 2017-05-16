@@ -29,6 +29,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
 </head>
 <body>
 
@@ -55,13 +56,13 @@
                 <li>
                     <a href="log.html">
                         <i class="pe-7s-user"></i>
-                        <p>User Profile</p>
+                        <p>Log Manager</p>
                     </a>
                 </li>
                 <li class="active">
                     <a href="search.html">
                         <i class="pe-7s-note2"></i>
-                        <p>Table List</p>
+                        <p>Search</p>
                     </a>
                 </li>
                 <li>
@@ -108,7 +109,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Table List</a>
+                    <a class="navbar-brand" href="#">Search Page</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -173,135 +174,130 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-md-1">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle btn-block center-block" style="padding: 14px 16px;border: 1px solid #999"
+                                data-toggle="dropdown" id="dropdownbutton">
+                             <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu " role="menu" id="index-ul">
+
+                        </ul>
+                    </div>
+
+                    </div>
+                    <div class="col-md-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-lg" id="searchinput"><span class="input-group-addon btn btn-primary" id="inputclick">搜索</span>
+                    </div>
+
+                    </div>
+                    <div class="col-md-1"><button type="button" class="btn btn-info" style="padding: 14px 16px" id="bodysearch">OK</button></div>
+                </div>
+
+                <hr />
+
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseOne">
+                                    Term Query
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="content table-responsive table-full-width">
+                                    <table class="table table-hover table-striped" id="termTable">
+                                        <tbody id="termTbody">
+                                        <thead>
+                                        <th>Filed</th>
+                                        <th>Type</th>
+                                        <th>QueryValue</th>
+                                        <th>Relation</th>
+                                        <th>Group</th>
+                                        <th>Delete</th>
+                                        </thead>
+                                        </tbody>
+                                    </table></div>
+                                <button type="button" class="btn btn-info pull-right" id="addTermSearch">添加搜索</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseTwo">
+                                   Buket Query
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="content table-responsive table-full-width">
+                                    <table class="table table-hover table-striped" id="aggsTable">
+                                        <tbody id="aggsTbody">
+                                        <thead>
+                                        <th>Group Filed</th>
+                                        <th>Type</th>
+                                        <th>Delete</th>
+                                        </thead>
+                                        </tbody>
+                                    </table></div>
+                                <button type="button" class="btn btn-info pull-right" id="addaggsSearch">添加搜索</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseThree">
+                                    图表
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body" id="echartBody" style="width: 100% ;height:200px;">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Striped Table with Hover</h4>
-                                <p class="category">Here is a subtitle for this table</p>
+                                <p class="category">RESULT</p>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-hover table-striped">
                                     <thead>
-                                        <th>ID</th>
-                                    	<th>Name</th>
-                                    	<th>Salary</th>
-                                    	<th>Country</th>
-                                    	<th>City</th>
+                                        <th>id</th>
+                                    	<th>index</th>
+                                    	<th>type</th>
+                                    	<th>source</th>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                        	<td>1</td>
-                                        	<td>Dakota Rice</td>
-                                        	<td>$36,738</td>
-                                        	<td>Niger</td>
-                                        	<td>Oud-Turnhout</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>2</td>
-                                        	<td>Minerva Hooper</td>
-                                        	<td>$23,789</td>
-                                        	<td>Curaçao</td>
-                                        	<td>Sinaai-Waas</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>3</td>
-                                        	<td>Sage Rodriguez</td>
-                                        	<td>$56,142</td>
-                                        	<td>Netherlands</td>
-                                        	<td>Baileux</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>4</td>
-                                        	<td>Philip Chaney</td>
-                                        	<td>$38,735</td>
-                                        	<td>Korea, South</td>
-                                        	<td>Overland Park</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>5</td>
-                                        	<td>Doris Greene</td>
-                                        	<td>$63,542</td>
-                                        	<td>Malawi</td>
-                                        	<td>Feldkirchen in Kärnten</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>6</td>
-                                        	<td>Mason Porter</td>
-                                        	<td>$78,615</td>
-                                        	<td>Chile</td>
-                                        	<td>Gloucester</td>
-                                        </tr>
+                                    <tbody id="searchBodyTable">
+
                                     </tbody>
                                 </table>
 
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-4 col-md-offset-4" >
+                        <ul class="pagination" id="page" >
+
+                        </ul>
+                    </div>
 
 
-                    <div class="col-md-12">
-                        <div class="card card-plain">
-                            <div class="header">
-                                <h4 class="title">Table on Plain Background</h4>
-                                <p class="category">Here is a subtitle for this table</p>
-                            </div>
-                            <div class="content table-responsive table-full-width">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <th>ID</th>
-                                    	<th>Name</th>
-                                    	<th>Salary</th>
-                                    	<th>Country</th>
-                                    	<th>City</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        	<td>1</td>
-                                        	<td>Dakota Rice</td>
-                                        	<td>$36,738</td>
-                                        	<td>Niger</td>
-                                        	<td>Oud-Turnhout</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>2</td>
-                                        	<td>Minerva Hooper</td>
-                                        	<td>$23,789</td>
-                                        	<td>Curaçao</td>
-                                        	<td>Sinaai-Waas</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>3</td>
-                                        	<td>Sage Rodriguez</td>
-                                        	<td>$56,142</td>
-                                        	<td>Netherlands</td>
-                                        	<td>Baileux</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>4</td>
-                                        	<td>Philip Chaney</td>
-                                        	<td>$38,735</td>
-                                        	<td>Korea, South</td>
-                                        	<td>Overland Park</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>5</td>
-                                        	<td>Doris Greene</td>
-                                        	<td>$63,542</td>
-                                        	<td>Malawi</td>
-                                        	<td>Feldkirchen in Kärnten</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>6</td>
-                                        	<td>Mason Porter</td>
-                                        	<td>$78,615</td>
-                                        	<td>Chile</td>
-                                        	<td>Gloucester</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
                     </div>
 
 
@@ -345,7 +341,6 @@
     </div>
 </div>
 
-
 </body>
 
     <!--   Core JS Files   -->
@@ -361,14 +356,19 @@
     <!--  Notifications Plugin    -->
     <script src="assets/js/bootstrap-notify.js"></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="assets/js/light-bootstrap-dashboard.js"></script>
 
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
-
-
+   <script data-main="scripts/search_main.js" src="assets/js/require.js"></script>
+<script type="text/javascript">
+$(function () { $('#collapseFour').collapse({
+toggle: false
+})});
+$(function () { $('#collapseTwo').collapse('hide')});
+$(function () { $('#collapseThree').collapse('toggle')});
+$(function () { $('#collapseOne').collapse('hide')});
+</script>
 </html>

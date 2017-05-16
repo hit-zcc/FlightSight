@@ -66,7 +66,7 @@
                 <li>
                     <a href="search.html">
                         <i class="pe-7s-note2"></i>
-                        <p>Table List</p>
+                        <p>Search</p>
                     </a>
                 </li>
                 <li>
@@ -145,25 +145,11 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                           <a href="">
+                           <a href="" id="login" type="submit" class="btn btn-default" data-toggle="modal" data-target="#myModal">
                                Account
                             </a>
                         </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    Dropdown
-                                    <b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                              </ul>
-                        </li>
+
                         <li>
                             <a href="#">
                                 Log out
@@ -280,7 +266,12 @@
                                                 </td>
                                                 <td>Create 4 Invisible User Experiences you Never Knew About</td>
                                                 <td class="td-actions text-right">
-
+                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -353,6 +344,39 @@
 
     </div>
 </div>
+
+
+
+
+<!-- 模态框（登录） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width:500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="text-center text-primary">登录</h2>
+            </div>
+            <div class="modal-body">
+
+                    <div class="form-group">
+                        <input type="text" id="name" class="form-control input-lg" placeholder="用户名">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" class="form-control input-lg" placeholder="登录密码">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-lg btn-block" id="loginSubmit"  data-dismiss="modal">立即登录</button>
+                        <span><a href="#" class="pull-right">注册</a></span>
+                    </div>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
 
 
 </body>

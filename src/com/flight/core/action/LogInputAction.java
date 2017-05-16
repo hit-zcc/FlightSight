@@ -1,9 +1,12 @@
 package com.flight.core.action;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import com.flight.util.StringUtil;
-@Component
+@Controller
+@Scope("prototype")
 public class LogInputAction {
 	private InputType Input=null;
 	private String path;

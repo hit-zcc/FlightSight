@@ -37,9 +37,9 @@ function  logContent(){
         console.log(value);
          aid='tr'+index
          tid='type'+index
-         tbody.append('<tr><td>'+index+'</td><td>'+value+'</td><td><a href="#" id='+aid+'>不分析</a></td><td><a href="#" id='+tid+'>String</a></td></tr>')
+         tbody.append('<tr><td>'+index+'</td><td>'+value+'</td><td><a href="#" id='+aid+'>不分析</a><button type="button" title="Edit " class="btn btn-info btn-simple btn-xs"> <i class="fa fa-edit"></i> </button></td><td><a href="#" id='+tid+'>String</a></td></tr>')
 
-         requirejs(['log','jQuery','fileinput',"bootstrap-editable"], function(log,jq,file,edit) {
+
              $(function () {
                  $('#tr'+index).editable(
                  {
@@ -54,13 +54,7 @@ function  logContent(){
                      }
                  }
              )
-             })
-
-         });
-
-
-
-         requirejs(['log','jQuery','fileinput',"bootstrap-editable"], function(log,jq,file,edit) {
+             });
              $(function () {
                  $('#type'+index).editable(
                      {
@@ -78,7 +72,6 @@ function  logContent(){
                  )
              })
 
-         });
 
     })
 
@@ -132,7 +125,7 @@ define([], function() {
             control.fileinput({
                 language: 'zh', //设置语言
                 uploadUrl:uploadUrl,
-                allowedFileExtensions : ['txt'],//接收的文件后缀
+                allowedFileExtensions : ['txt','csv'],//接收的文件后缀
                 showUpload: false, //是否显示上传按钮
                 showCaption: false,//是否显示标题
                 showPreview : true,//是否预览

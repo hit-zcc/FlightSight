@@ -43,4 +43,19 @@ public class ParseResultUtil {
 		return list;
 	}
 
+	public JSONObject PareseMappingQuery(JSONObject re, String index) {
+		// TODO Auto-generated method stub
+		JSONObject type=re.getJSONObject(index).getJSONObject("mappings");
+		Iterator<String> iterator=type.keySet().iterator();
+		//暂时使用
+//		String key=iterator.next();
+
+		return type.getJSONObject("logs").getJSONObject("properties");
+	}
+	public JSONArray ParseTerm(JSONObject re){
+		
+		return re.getJSONObject("hits").getJSONArray("hits");
+		
+	}
+
 }

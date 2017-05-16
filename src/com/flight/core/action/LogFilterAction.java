@@ -5,11 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.joda.time.DateTime;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.flight.util.StringUtil;
-@Component
+@Controller
+@Scope("prototype")
 public class LogFilterAction {
 	ArrayList<FildeEntity> entityList=new ArrayList<FildeEntity>();
 	private FilterType ft;
@@ -17,7 +21,7 @@ public class LogFilterAction {
 
 	public void setFt(FilterType ft) {
 		this.ft = ft;
-	}
+	}	
 	LogFilterAction(){
 		
 	}
@@ -92,6 +96,7 @@ public class LogFilterAction {
 		    else{
 		    	en=en.replaceFirst("#", "");
 		    }
+		    
 		    if(type!=FiedType.STRING){
 		    	en=en.replaceFirst("#", ":"+type.getType());
 		    }

@@ -27,7 +27,6 @@ import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONObject;
 import com.flight.core.action.ESAggsAction;
-import com.flight.core.action.ESAggsAction.termsAggs;
 
 @Component
 public class HttpClientUtil {  
@@ -183,10 +182,6 @@ public class HttpClientUtil {
    public static void main(String[] args){
 	   Map<String, String> maps = new HashMap<String, String>();  
    	ESAggsAction es=new ESAggsAction();
-   	ESAggsAction.termsAggs term=new ESAggsAction().new termsAggs();
-   	term.setTermsAim("_index");
-   	es.setTermsName("main");
-   	es.addAggsMethod(term);
    	System.out.print(es.getAggsBody().toJSONString());
        String responseContent = HttpClientUtil.getInstance()  
                .sendHttpPost("http://localhost:9200/_search/", es.getAggsBody());  

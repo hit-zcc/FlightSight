@@ -4,6 +4,15 @@
 
 define([], function() {
         return {
+            initLogin:function(){
+
+                $("#loginSubmit").click(function(){
+                  var name= $("#name").val()
+                    var password= $("#password").val()
+                    console.log(name+"  "+password)
+
+                })
+            },
             chartpreferences: function (echarts) {
                 var obj = []
                 var mychart = echarts.init(document.getElementById('chartpreferences'));

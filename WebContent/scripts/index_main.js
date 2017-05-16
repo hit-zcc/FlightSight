@@ -18,6 +18,7 @@ requirejs(['jQuery','fileinput',"bootstrap-editable","echarts","index"], functio
     index.chartpreferences(echarts);
     index.chartHours(echarts);
     index.sharedsAndReplicas(echarts);
+    index.initLogin();
     /*    var dir=$("#submit-1")
      dir.click(function(){
      log.logsubmit(dir.val())

@@ -6,9 +6,12 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-@Component
+@Controller
+@Scope("prototype")
 public class LogFileManager {
 	private String dir="";
 	public String getDir() {
