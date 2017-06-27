@@ -42,7 +42,18 @@ public class ParseResultUtil {
 		list.add(replicas);
 		return list;
 	}
-
+	public JSONObject PareseIndexInfoQuery(JSONObject object){
+		
+		JSONObject info=new JSONObject();
+		Iterator<String> iterator=object.keySet().iterator();
+		while(iterator.hasNext()){
+			
+			String key=iterator.next();
+			info.put(key,
+					object.getJSONObject(key).getJSONObject("settings").getJSONObject("index"));
+			}
+		return info;
+	}
 	public JSONObject PareseMappingQuery(JSONObject re, String index) {
 		// TODO Auto-generated method stub
 		JSONObject type=re.getJSONObject(index).getJSONObject("mappings");

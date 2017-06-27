@@ -4,7 +4,7 @@
 
 var _mapping={}
 var optionString
-var TermType="<option>match</option><option>regexp</option>"
+var TermType="<option>match</option><option>regexp</option><option>gte</option><option>gt</option><option>lte</option><option>lt</option>"
 var AggsType="<option>sum</option><option>count</option>"
 var Relation="<option>must</option><option>should</option>"
 var Group="<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>"
@@ -12,6 +12,7 @@ var search={
 
 }
 var pagesize
+var curr_option={}
 
 function AddTermValue(name,type,_value,relation,group){
     var en={}
@@ -57,7 +58,7 @@ function getMapping(key){
 }
 
 function pageinit(msg){
-    size=msg.length/10
+    size=Math.round((msg.length-0.5)/10)+1
     page=$("#page")
     var options={
         bootstrapMajorVersion:1,    //版本
@@ -145,6 +146,8 @@ function searchFunction(search,echarts){
         success: function (response) {
             //写数据
             console.log(response)
+            $("#count").html(response.total)
+            $("#searchBodyTable").html("")
             msg=response.termresult
             pagesize=msg.length
 
@@ -164,6 +167,8 @@ function searchFunction(search,echarts){
 
             //写图标
             result=response.aggsresult
+
+
             $.each(result,function(index,value) {
                 obj.push(value.doc_count);
                 xaxis.push(value.key)
@@ -218,6 +223,8 @@ function searchFunction(search,echarts){
             };
 
             // 使用刚指定的配置项和数据显示图表。
+            curr_option['xdata']=option.xAxis.data
+            curr_option['ydata']=option.series[0].data
             mychart.setOption(option);
 
         },
@@ -242,6 +249,27 @@ function searchFunction(search,echarts){
 define(["bootstrap-select"], function(select) {
 
     return {
+        saveChart:function(){
+            $("#savechart").click(function(){
+                   var name=prompt("图形名称",""); // 弹出input框
+
+                    var chart_data={}
+                    chart_data['xdata']=curr_option['xdata']
+                    chart_data['ydata']=curr_option['ydata']
+                    chart_data['name']=name
+                    $.ajax({
+                        url: "http://localhost:8080/FlightSight/main/Chartsave",
+                        type : "POST",
+                        data : JSON.stringify(chart_data),
+                        dataType: "json",
+                        contentType:"application/json;charset=utf-8",
+                        success: function (response) {
+
+
+                        }
+
+            })
+        })},
         inputsearch:function(echarts,mychart){
             $("#inputclick").click(function(){
                 var xaxis=[]
@@ -303,9 +331,8 @@ define(["bootstrap-select"], function(select) {
         getIndex: function (echarts) {
             $('#index-ul').children().remove()
             $.ajax({
-                url: "http://localhost:8080/FlightSight/main/initpic",
+                url: "http://localhost:8080/FlightSight/main/userIndex",
                 type: "GET",
-                data: {type: "chartpreferences"},
                 contentType: "text/html;charset=utf-8",
                 dataType: "text",
                 success: function (msg) {

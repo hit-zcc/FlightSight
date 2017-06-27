@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -27,6 +28,7 @@ import com.flight.core.action.LogFileManager;
 import com.flight.core.action.LogFilterAction;
 import com.flight.core.action.LogInputAction;
 import com.flight.core.action.LogOutputAction;
+import com.flight.core.gather.entity.LogUserRepository;
 import com.flight.util.BatUtil;
 
 @Controller
@@ -41,6 +43,8 @@ public class LogService {
 	LogFilterAction logFilterAction;
 	@Autowired
 	LogOutputAction logOutputAction;
+	@Autowired
+	LogUserRepository logUserRepository;
 	@RequestMapping(value="/test",method=RequestMethod.GET)
     public String test(@RequestParam(value="dir") String test)
     {
@@ -61,8 +65,10 @@ public class LogService {
 	
 	@RequestMapping(value="/FormSubmit",method=RequestMethod.POST,consumes = "application/json")
 	@ResponseBody
-    public String FormSubmit(@RequestBody Map<String, Object> map)
+    public String FormSubmit(@RequestBody Map<String, Object> map,HttpSession session) throws Exception
     {
+		JSONObject u=(JSONObject) session.getAttribute("currUser");
+		logUserRepository.saveLogUser(map.get("Index").toString(),u.getString("name"));
 		System.out.print(map.get("table"));
 		logInputAction.setInput(LogInputAction.InputType.File);
 		logInputAction.addtags(map.get("Tags").toString());
@@ -79,6 +85,7 @@ public class LogService {
 		try {
 			BufferedWriter output = new BufferedWriter(new FileWriter(file));
 			output.write(conf);
+			System.out.print(conf);
 			output.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -70,15 +70,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="pandect.html">
                         <i class="pe-7s-news-paper"></i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="pe-7s-science"></i>
-                        <p>Icons</p>
+                        <p>Pandect</p>
                     </a>
                 </li>
                 <li>
@@ -87,12 +81,7 @@
                         <p>Maps</p>
                     </a>
                 </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
+
 				<li class="active-pro">
                     <a href="upgrade.html">
                         <i class="pe-7s-rocket"></i>
@@ -122,20 +111,7 @@
                                 <i class="fa fa-dashboard"></i>
                             </a>
                         </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-globe"></i>
-                                    <b class="caret"></b>
-                                    <span class="notification">5</span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
+
                         <li>
                            <a href="">
                                 <i class="fa fa-search"></i>
@@ -151,7 +127,7 @@
                         </li>
 
                         <li>
-                            <a href="#">
+                            <a class="btn btn-default" id="loginout">
                                 Log out
                             </a>
                         </li>
@@ -254,7 +230,7 @@
                                                 <td>
 
                                                 </td>
-                                                <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                                <td>You Can Search Data In  Search
 </td>
                                                 <td class="td-actions text-right">
 
@@ -264,7 +240,7 @@
                                                 <td>
 
                                                 </td>
-                                                <td>Create 4 Invisible User Experiences you Never Knew About</td>
+                                                <td>You Can View Log Details In Pandect</td>
                                                 <td class="td-actions text-right">
                                                     <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
                                                         <i class="fa fa-edit"></i>
@@ -278,7 +254,7 @@
                                                 <td>
 
                                                 </td>
-                                                <td>Read "Following makes Medium better"</td>
+                                                <td>You Can Compare Graph in Map</td>
                                                 <td class="td-actions text-right">
 
                                                 </td>
@@ -336,9 +312,7 @@
                         </li>
                     </ul>
                 </nav>
-                <p class="copyright pull-right">
-                    &copy; 2016 <a href="#">Creative Tim</a>, More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-                </p>
+
             </div>
         </footer>
 
@@ -366,7 +340,7 @@
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary btn-lg btn-block" id="loginSubmit"  data-dismiss="modal">立即登录</button>
-                        <span><a href="#" class="pull-right">注册</a></span>
+                        <span><a href="#" class="pull-right" id="register"  data-toggle="modal" data-target="#myModal1" data-dismiss="modal">注册</a></span>
                     </div>
 
             </div>
@@ -378,6 +352,39 @@
 </div>
 </body>
 
+
+<!-- 模态框（登录） -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width:500px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="text-center text-primary">注册</h2>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <input type="text" id="registername" class="form-control input-lg" placeholder="用户名">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="registerpassword" class="form-control input-lg" placeholder="登录密码">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="registerpassword_repeat" class="form-control input-lg" placeholder="再次确认登录密码">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-lg btn-block" id="registerSubmit"  data-dismiss="modal">立即注册</button>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
 
 </body>
 

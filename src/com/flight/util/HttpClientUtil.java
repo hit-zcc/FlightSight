@@ -13,6 +13,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.config.*;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -177,7 +178,40 @@ public class HttpClientUtil {
         }  
         return responseContent;  
     }  
-      
+    public String sendHttpDelete(String httpUrl) {  
+        HttpDelete Httpdelete = new HttpDelete(httpUrl);// 创建httpPost    
+        return sendHttpDelete(Httpdelete);  
+    }  
+    public String sendHttpDelete(HttpDelete httpDelete) {
+    	CloseableHttpClient httpClient = null;  
+        CloseableHttpResponse response = null;  
+        HttpEntity entity = null;  
+        String responseContent = null;  
+        try {  
+            // 创建默认的httpClient实例.  
+            httpClient = HttpClients.createDefault();  
+            httpDelete.setConfig(requestConfig);  
+            // 执行请求  
+            response = httpClient.execute(httpDelete);  
+            entity = response.getEntity();  
+            responseContent = EntityUtils.toString(entity, "UTF-8");  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        } finally {  
+            try {  
+                // 关闭连接,释放资源  
+                if (response != null) {  
+                    response.close();  
+                }  
+                if (httpClient != null) {  
+                    httpClient.close();  
+                }  
+            } catch (IOException e) {  
+                e.printStackTrace();  
+            }  
+        }  
+        return responseContent;  
+    }
 
    public static void main(String[] args){
 	   Map<String, String> maps = new HashMap<String, String>();  

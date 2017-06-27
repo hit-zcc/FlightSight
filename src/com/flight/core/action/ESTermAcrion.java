@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSONObject;
 public class ESTermAcrion extends AbstractESAction {
 	private JSONArray term=new JSONArray();
 	private Map<String,String> relationMap=new LinkedHashMap<String,String>();
+	public static String[] NUMBERTYPE={"gte","gt","lte","lt"};
 	
 	
 	public Map<String,JSONArray> splitGroup(){
@@ -82,15 +83,37 @@ public class ESTermAcrion extends AbstractESAction {
 		for(int i=0;i<jarray.size();i++){
 			JSONObject type=new JSONObject();
 			JSONObject en=new JSONObject();
+			
+			
+			JSONObject range=new JSONObject();
+			JSONObject should=new JSONObject();
 			tmp=jarray.getJSONObject(i);
+		
 			relationKey.add(tmp.getString("relation"));
+		    if(isNumberType(tmp.getString("type")))	{
+		    	type.put(tmp.getString("type"),tmp.getDouble("_value"));
+		    	en.put(tmp.getString("name"), type);
+		    	range.put("range", en);
+		    	relation.add(range);
+		    }
+		    else{
 			type.put(tmp.getString("name"), tmp.getString("_value"));
 			en.put(tmp.getString("type"), type);
 			relation.add(en);
+		    }
 		}
 		
 		
 		return combine(relationKey,relation);
+		
+	}
+	public boolean isNumberType(String type){
+	    for(String s:NUMBERTYPE){
+	    	if(s.equals(type)){
+	    		return true;
+	    	}
+	    }
+	    return false;
 		
 	}
 	
@@ -164,7 +187,7 @@ public class ESTermAcrion extends AbstractESAction {
 	
 	
 	public static void main(String[] args){
-		JSONArray a= JSONArray.parseArray("[{\"name\":\"UNIQUE_CARRIER_ENTITY\",\"type\":\"match\",\"_value\":\"dfdf\",\"relation\":\"should\",\"group\":\"0\"},{\"name\":\"UNIQUE_CARRIER_ENTITY\",\"type\":\"match\",\"_value\":\"dfdf\",\"relation\":\"should\",\"group\":\"0\"}]");
+		JSONArray a= JSONArray.parseArray("[{\"name\":\"UNIQUE_CARRIER_ENTITY\",\"type\":\"gt\",\"_value\":\"111\",\"relation\":\"should\",\"group\":\"0\"},{\"name\":\"UNIQUE_CARRIER_ENTITY\",\"type\":\"match\",\"_value\":\"dfdf\",\"relation\":\"should\",\"group\":\"0\"}]");
 		ESTermAcrion e=new ESTermAcrion();
 		e.setTerm(a);
 		JSONObject s=e.parseTermString();

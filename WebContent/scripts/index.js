@@ -4,13 +4,76 @@
 
 define([], function() {
         return {
-            initLogin:function(){
+            initregister:function(){
+                $("#registerSubmit").click(function(){
+                    var name= $("#registername").val()
+                    var password= $("#registerpassword").val()
+                    var password_repeat=$("#registerpassword_repeat").val()
+                    if(password!=password_repeat){
+                        alert("两次输入名密码不同")
+                        return
+                    }
+                    $.ajax({
+                        url: "http://localhost:8080/FlightSight/user/register",
+                        type: "GET",
+                        data: {name: name,password:password},
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (msg) {
+                            if(msg.status=="OK"){
+                                alert("注册成功")
+                            }
 
+                        }
+                    })
+                })
+            },
+            initLoginout:function(){
+
+                $("#loginout").click(function(){
+                    $.ajax({
+                        url: "http://localhost:8080/FlightSight/user/loginout",
+                        type: "GET",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (msg) {
+                            if(msg.status=="OK"){
+                                $("#login").html("Acount")
+                            }
+
+                        }
+                    })
+                })
+            },
+            initLogin:function(){
+                $.ajax({
+                    url: "http://localhost:8080/FlightSight/user/auth",
+                    type: "GET",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (msg) {
+                        if(msg.status=="OK"){
+                            $("#login").html(msg.content.name)
+                        }
+
+                    }
+                })
                 $("#loginSubmit").click(function(){
                   var name= $("#name").val()
                     var password= $("#password").val()
-                    console.log(name+"  "+password)
+                        $.ajax({
+                            url: "http://localhost:8080/FlightSight/user/login",
+                            type: "GET",
+                            data: {name: name,password:password},
+                            contentType: "application/json;charset=utf-8",
+                            dataType: "json",
+                            success: function (msg) {
+                                if(msg.status=="OK"){
+                                    $("#login").html(msg.content.name)
+                                }
 
+                            }
+                        })
                 })
             },
             chartpreferences: function (echarts) {

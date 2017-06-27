@@ -74,8 +74,8 @@ public class LogFilterAction {
 		public static FiedType getFiledTypeByString(String s){
 			FiedType t;
 			switch(s){
-			case "int":t=FiedType.INT;break;
-			case "float":t=FiedType.FLOAT;break;
+			case "Int":t=FiedType.INT;break;
+			case "Float":t=FiedType.FLOAT;break;
 			default :t=FiedType.STRING;break;
 		}
 			return t;

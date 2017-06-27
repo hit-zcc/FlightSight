@@ -24,6 +24,7 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd">
     <context:component-scan base-package="com.flight.core.gather.config"/>
     <context:component-scan base-package="com.flight.core.action"/>
     <context:component-scan base-package="com.flight.core.gather.service"/>
+    <context:component-scan base-package="com.flight.core.gather.entity"/>
     <context:component-scan base-package="com.flight.util"/>
  	<mvc:resources location="/" mapping="/**/*.html"/> 
  	<mvc:resources location="/" mapping="/**/*.js"/>  

@@ -19,6 +19,7 @@ requirejs(["bootstrap-select","echarts","search","paginator"], function(select,e
     search.bodysearch(echarts,mychart)
     search.inputsearch(echarts,mychart)
     //addTermSearch(select)
+    search.saveChart();
     $("#addTermSearch").click(function(){
         $("#termTbody").append("<tr><td><select class=selectpicker> "+optionString +"</select></td><td><select class=selectpicker> "+TermType +"</select></td><td><input type=text class=form-control></td><td><select class=selectpicker> "+Relation +"</select></td><td><select class=selectpicker> "+Group +"</select></td><td><a class='btn btn-danger'>delete</a></td></tr>")
         $('.selectpicker').selectpicker();
